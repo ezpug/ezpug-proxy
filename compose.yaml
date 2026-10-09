@@ -1,0 +1,12 @@
+# docker compose up -d   (reads EZPUG_RELAY_TOKEN from .env next to this file)
+services:
+  relay:
+    build: .
+    image: ezpug-relay
+    container_name: ezpug-relay
+    restart: unless-stopped
+    # Host networking on purpose: the relay must resolve saar-lan.de through the
+    # VENUE's DNS (the local ezLAN copy). Docker's own DNS can fall back to a public
+    # resolver, and then the relay silently talks to the public ezLAN and is useless.
+    network_mode: host
+    env_file: .env

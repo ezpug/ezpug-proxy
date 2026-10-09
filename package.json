@@ -1,0 +1,17 @@
+{
+  "name": "ezpug-proxy",
+  "version": "1.0.0",
+  "description": "EZPug venue relay: lets the platform redeem SaarLAN codes issued by the LAN's local ezLAN copy",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "main": "relay.mjs",
+  "scripts": {
+    "start": "node relay.mjs",
+    "check": "node relay.mjs --check",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "ws": "8.18.3"
+  }
+}

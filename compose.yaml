@@ -1,8 +1,8 @@
 # docker compose up -d   (reads EZPUG_RELAY_TOKEN from .env next to this file)
 services:
   relay:
-    build: .
-    image: ezpug-relay
+    image: ghcr.io/ezpug/ezpug-proxy:latest
+    pull_policy: always
     container_name: ezpug-relay
     restart: unless-stopped
     # Host networking on purpose: the relay must resolve saar-lan.de through the

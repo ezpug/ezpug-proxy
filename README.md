@@ -15,18 +15,23 @@ Nothing else. No open port, no DNS change, nothing to set up but the token.
 
 ## Run it (Docker, recommended)
 
+No clone needed. The image is published at `ghcr.io/ezpug/ezpug-proxy`:
+
 ```bash
-git clone git@github.com:ezpug/ezpug-proxy.git && cd ezpug-proxy
-echo "EZPUG_RELAY_TOKEN=<the token from the platform admin>" > .env
-docker compose up -d --build && docker logs -f ezpug-relay
+docker run -d --name ezpug-relay --restart unless-stopped --network host \
+  -e EZPUG_RELAY_TOKEN=<the token from the platform admin> \
+  ghcr.io/ezpug/ezpug-proxy:latest
+docker logs -f ezpug-relay
 ```
 
-Without compose: `docker build -t ezpug-relay . && docker run -d --name ezpug-relay --restart unless-stopped --network host --env-file .env ezpug-relay`
+Just the self-check: `docker run --rm --network host ghcr.io/ezpug/ezpug-proxy:latest node relay.mjs --check`
 
 `--network host` matters: the relay must use the **venue's** DNS. Stop it with
-`docker compose down` (or `docker rm -f ezpug-relay`).
+`docker rm -f ezpug-relay`. Update: `docker pull ghcr.io/ezpug/ezpug-proxy:latest`, then remove
+and run again.
 
-Without Docker (Node 20+): `npm ci && npm start`. Just the self-check: `npm run check`.
+With the repo checked out: put `EZPUG_RELAY_TOKEN=…` into `.env` and `docker compose up -d`.
+Build it yourself: `docker build -t ezpug-relay .`. Without Docker (Node 20+): `npm ci && npm start`.
 
 ## What "working" looks like
 

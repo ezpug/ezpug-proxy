@@ -1,6 +1,6 @@
 {
   "name": "ezpug-proxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "EZPug venue relay: lets the platform redeem SaarLAN codes issued by the LAN's local ezLAN copy",
   "type": "module",
   "private": true,

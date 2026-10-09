@@ -1,4 +1,7 @@
 FROM node:22-alpine
+LABEL org.opencontainers.image.source="https://github.com/ezpug/ezpug-proxy" \
+      org.opencontainers.image.description="EZPug venue relay: ezLAN token and userinfo calls through the LAN" \
+      org.opencontainers.image.licenses="UNLICENSED"
 WORKDIR /relay
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force

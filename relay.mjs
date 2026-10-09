@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url'
 import WebSocket from 'ws'
 
 export const PROTOCOL_VERSION = 1
-export const VERSION = '1.0.0'
+export const VERSION = '1.0.1'
 export const DEFAULT_RELAY_URL = 'wss://api.pug.saar-lan.de/venue/relay'
 export const DEFAULT_EZLAN_URL = 'https://saar-lan.de'
 export const PUBLIC_EZLAN_ADDRESS = '152.53.253.187'

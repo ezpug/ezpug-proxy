@@ -285,9 +285,14 @@ export function startRelay(config, { onState = () => {}, WebSocketImpl = WebSock
       }
       if (frame && typeof frame === 'object') void handle(frame)
     })
-    socket.on('close', () => {
+    socket.on('close', code => {
       clearTimeout(silence)
-      onState({ connected: false })
+      onState({ connected: false, code })
+      if (code === 4001) {
+        log('!!! line: another relay took over (4001). Only one may run; this one waits a minute.')
+        schedule(BACKOFF_REFUSED_MS)
+        return
+      }
       schedule(backoffMs(attempt++, random))
     })
     socket.on('error', error => {
